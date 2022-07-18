@@ -1,0 +1,6 @@
+- name: Install nvim
+  become: yes
+  community.general.pacman:
+    name: neovim
+    state: latest
+

@@ -1,0 +1,20 @@
+- name: Install alacritty
+  become: yes
+  community.general.pacman:
+    name: alacritty
+    state: latest
+- name: Install zsh
+  become: yes
+  community.general.pacman:
+    name: zsh
+    state: latest
+- name: Install tmux
+  become: yes
+  community.general.pacman:
+    name: tmux
+    state: latest
+- name: Set shell
+  become: yes
+  user:
+    name: roy
+    shell: /bin/zsh

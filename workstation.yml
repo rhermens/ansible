@@ -1,0 +1,10 @@
+- hosts: localhost
+  pre_tasks:
+    - name: "Update pacman"
+      become: true
+      community.general.pacman:
+        update_cache: true
+  tasks:
+    - include: tasks/terminal.yml
+    - include: tasks/nvim.yml
+    - include: tasks/dotfiles.yml
