@@ -1,0 +1,6 @@
+- name: Install alacritty
+  tags:
+    - gui
+  become: yes
+  package: name=alacritty state=latest
+

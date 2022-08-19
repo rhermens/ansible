@@ -1,20 +1,42 @@
-- name: Install alacritty
-  become: yes
-  community.general.pacman:
-    name: alacritty
-    state: latest
 - name: Install zsh
+  tags:
+    - terminal
   become: yes
-  community.general.pacman:
-    name: zsh
-    state: latest
+  package: name=zsh state=latest
+
 - name: Install tmux
+  tags:
+    - terminal
   become: yes
-  community.general.pacman:
-    name: tmux
-    state: latest
+  package: name=tmux state=latest
+
+- name: Install fzf
+  tags:
+    - terminal
+  become: yes
+  package: name=fzf state=latest
+
+- name: Install ripgrep
+  tags:
+    - terminal
+  become: yes
+  package: name=ripgrep state=latest
+
 - name: Set shell
+  tags:
+    - terminal
   become: yes
   user:
     name: roy
-    shell: /bin/zsh
+    shell: /usr/bin/zsh
+
+- name: p10k
+  tags:
+    - terminal
+  ansible.builtin.git:
+    repo: 'git@github.com:romkatv/powerlevel10k.git'
+    dest: "{{lookup('env', 'HOME')}}/powerlevel10k"
+    depth: 1
+    accept_hostkey: yes
+    version: master
+
