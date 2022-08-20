@@ -10,11 +10,31 @@
   become: yes
   package: name=tmux state=latest
 
+- name: Clone fzf
+  tags:
+    - terminal
+  ansible.builtin.git:
+    repo: 'git@github.com:junegunn/fzf.git'
+    dest: "{{lookup('env', 'HOME')}}/.fzf"
+    accept_hostkey: yes
+    version: master
+
 - name: Install fzf
   tags:
     - terminal
   become: yes
-  package: name=fzf state=latest
+  ansible.builtin.copy:
+    src: "{{lookup('env', 'HOME')}}/.fzf/bin/fzf"
+    dest: /usr/local/bin/fzf
+    mode: 0755
+
+- name: Fzf zsh binding
+  tags:
+    - terminal
+  become: yes
+  ansible.builtin.copy:
+    src: "{{lookup('env', 'HOME')}}/.fzf/shell/"
+    dest: /usr/share/fzf
 
 - name: Install ripgrep
   tags:
