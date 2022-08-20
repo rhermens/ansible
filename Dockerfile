@@ -1,6 +1,6 @@
 FROM ubuntu:focal AS base
 WORKDIR /usr/local/bin
-ENV TAGS=core,terminal,config
+ENV TAGS=core,terminal,config,dev
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
@@ -15,5 +15,5 @@ RUN apt-get update && \
 FROM base AS workstation
 
 COPY . .
-CMD ["sh", "-c", "ansible-playbook --ask-vault-pass --tags $TAGS workstation.yml"]
+CMD ["sh", "-c", "ansible-playbook --ask-vault-pass --tags $TAGS unix.yml"]
 

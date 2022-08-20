@@ -1,0 +1,7 @@
+- hosts: localhost
+  tasks:
+    - include: tasks/ssh.yml
+    - include: tasks/terminal.yml
+    - include: tasks/dotfiles.yml
+    - include: tasks/nvim.yml
+    - include: tasks/dev.yml

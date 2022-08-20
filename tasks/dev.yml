@@ -1,0 +1,25 @@
+- name: Install golang
+  tags:
+    - dev
+  become: yes
+  ansible.builtin.unarchive:
+    dest: /usr/local
+    remote_src: yes
+    creates: /usr/local/go
+    src: https://go.dev/dl/go1.19.linux-amd64.tar.gz
+
+- name: Install nvm
+  tags:
+    - dev
+  ansible.builtin.shell:
+    cmd: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    creates: "{{lookup('env', 'HOME')}}/.nvm"
+
+- name: Install node
+  tags: 
+    - dev
+  ansible.builtin.shell:
+    executable: /bin/bash
+    cmd: "source {{lookup('env', 'HOME')}}/.nvm/nvm.sh; nvm install --lts; nvm use --lts"
+    creates: "{{lookup('env', 'HOME')}}/.nvm/versions/node/v16.17.0"
+

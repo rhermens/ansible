@@ -1,3 +1,2 @@
 #!/bin/bash
-
-ansible-playbook --tags core,config,terminal workstation.yml --ask-vault-pass
+ansible-playbook --tags core,config,terminal,dev unix.yml --ask-vault-pass --ask-become-pass
