@@ -1,14 +1,19 @@
 - name: Install zsh
   tags:
     - terminal
+    - zsh  
   become: yes
   package: name=zsh state=latest
 
-- name: "Zsh hightlighting"
+- name: Antigen
   tags:
     - terminal
-  become: yes
-  package: name=zsh-syntax-highlighting state=latest
+    - zsh  
+  ansible.builtin.git:
+    repo: 'https://github.com/zsh-users/antigen.git'
+    dest: "{{lookup('env', 'HOME')}}/antigen"
+    accept_hostkey: yes
+    version: master
 
 - name: Install tmux
   tags:
