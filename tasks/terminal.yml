@@ -4,6 +4,12 @@
   become: yes
   package: name=zsh state=latest
 
+- name: "Zsh hightlighting"
+  tags:
+    - terminal
+  become: yes
+  package: name=zsh-syntax-highlighting state=latest
+
 - name: Install tmux
   tags:
     - terminal
@@ -24,8 +30,8 @@
     - terminal
   become: yes
   ansible.builtin.copy:
-    src: "{{lookup('env', 'HOME')}}/.fzf/bin/fzf"
-    dest: /usr/local/bin/fzf
+    src: "{{lookup('env', 'HOME')}}/.fzf/bin/"
+    dest: /usr/local/bin
     mode: 0755
 
 - name: Fzf zsh binding
