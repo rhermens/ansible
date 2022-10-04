@@ -1,3 +1,17 @@
+
+- name: Ubuntu package facts
+  tags: 
+    - terminal
+  set_fact:
+    pyvenv: "python3-venv"
+  when: ansible_distribution == "Ubuntu"
+- name: Manjaro package facts
+  tags: 
+    - terminal
+  set_fact:
+    pyvenv: "python-virtualenv"
+  when: ansible_distribution == "Archlinux"
+
 - name: nvim repository
   tags:
     - terminal
@@ -18,7 +32,7 @@
     - terminal
     - nvim
   become: yes
-  package: name=python3-venv state=latest
+  package: name={{pyvenv}} state=latest
 
 - name: "Plugged Directory"
   tags:
