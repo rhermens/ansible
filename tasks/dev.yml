@@ -15,11 +15,20 @@
     cmd: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
     creates: "{{lookup('env', 'HOME')}}/.nvm"
 
-- name: Install node
+- name: Install node 18 Hydrogen
   tags: 
     - dev
+    - node
   ansible.builtin.shell:
     executable: /bin/bash
     cmd: "source {{lookup('env', 'HOME')}}/.nvm/nvm.sh; nvm install 18.12.1; nvm use 18.12.1"
     creates: "{{lookup('env', 'HOME')}}/.nvm/versions/node/v18.12.1"
 
+- name: Install node 16 Gallium
+  tags: 
+    - dev
+    - node
+  ansible.builtin.shell:
+    executable: /bin/bash
+    cmd: "source {{lookup('env', 'HOME')}}/.nvm/nvm.sh; nvm install 16.18.1; nvm use 16.18.1"
+    creates: "{{lookup('env', 'HOME')}}/.nvm/versions/node/v16.18.1"
