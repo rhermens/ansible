@@ -18,7 +18,7 @@
 - name: Install tmux
   tags:
     - terminal
-  become: yes
+  become: true
   package: name=tmux state=latest
 
 - name: Clone fzf
@@ -30,10 +30,17 @@
     accept_hostkey: yes
     version: master
 
+- name: Setup fzf
+  tags:
+    - terminal
+  shell: 
+    cmd: cd $HOME/.fzf && ./install --bin
+    creates: "{{lookup('env', 'HOME')}}/.fzf/bin/fzf"
+
 - name: Install fzf
   tags:
     - terminal
-  become: yes
+  become: true
   ansible.builtin.copy:
     src: "{{lookup('env', 'HOME')}}/.fzf/bin/"
     dest: /usr/local/bin
@@ -42,7 +49,7 @@
 - name: Fzf zsh binding
   tags:
     - terminal
-  become: yes
+  become: true
   ansible.builtin.copy:
     src: "{{lookup('env', 'HOME')}}/.fzf/shell/"
     dest: /usr/share/fzf
@@ -50,13 +57,13 @@
 - name: Install ripgrep
   tags:
     - terminal
-  become: yes
+  become: true
   package: name=ripgrep state=latest
 
 - name: Set shell
   tags:
     - terminal
-  become: yes
+  become: true
   user:
     name: roy
     shell: /usr/bin/zsh

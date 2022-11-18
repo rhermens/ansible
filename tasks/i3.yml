@@ -1,0 +1,23 @@
+- name: Install i3-gaps
+  tags:
+    - i3
+  become: yes
+  package: name=i3-gaps state=latest
+
+- name: Install i3 status
+  tags:
+    - i3
+  become: yes
+  package: name=i3status state=latest
+
+- name: Install rofi
+  tags:
+    - i3
+  become: yes
+  package: name=rofi state=latest
+
+- name: Install nitrogen
+  tags:
+    - i3
+  become: yes
+  package: name=nitrogen state=latest

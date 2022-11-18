@@ -24,14 +24,14 @@
   tags:
     - terminal
     - nvim
-  become: yes
+  become: true
   package: name=neovim state=latest
 
 - name: Install py-venv
   tags:
     - terminal
     - nvim
-  become: yes
+  become: true
   package: name={{pyvenv}} state=latest
 
 - name: "Plugged Directory"
@@ -58,4 +58,4 @@
     - nvim
   ansible.builtin.shell:
     cmd: nvim --headless +PlugInstall +qa
-    creates: "{{lookup('env', 'HOME')}}/.vim/plugged/"
+    creates: "{{lookup('env', 'HOME')}}/.local/shared/nvim/plugged/"
