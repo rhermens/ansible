@@ -78,3 +78,18 @@
     accept_hostkey: yes
     version: master
 
+- name: clone chrome-shell
+  tags:
+    - terminal
+  ansible.builtin.git:
+    repo: 'git@github.com:rhermens/chrome-shell.git'
+    dest: "{{lookup('env', 'HOME')}}/chrome-shell"
+    depth: 1
+    accept_hostkey: yes
+    version: master
+
+- name: Install chrome-shell
+  tags: 
+    - terminal
+  shell: cd $HOME/chrome-shell && ./install
+
