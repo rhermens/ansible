@@ -16,6 +16,12 @@
   become: yes
   package: name=rofi state=latest
 
+- name: Install dunst
+  tags:
+    - i3
+  become: yes
+  package: name=dunst state=latest
+
 - name: Install nitrogen
   tags:
     - i3
