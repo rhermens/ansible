@@ -2,11 +2,13 @@
 - name: Ubuntu package facts
   tags: 
     - terminal
+    - nvim
   set_fact:
     pyvenv: "python3-venv"
   when: ansible_distribution == "Ubuntu"
 - name: Manjaro package facts
   tags: 
+    - nvim
     - terminal
   set_fact:
     pyvenv: "python-virtualenv"
@@ -27,35 +29,19 @@
   become: true
   package: name=neovim state=latest
 
-- name: Install py-venv
+- name: Install py-venv (CHADTree dep)
   tags:
     - terminal
     - nvim
   become: true
   package: name={{pyvenv}} state=latest
 
-- name: "Plugged Directory"
+- name: Get packer
   tags:
-    - terminal
     - nvim
-  file:
-    dest: "{{lookup('env', 'HOME')}}/.local/share/nvim/site/autoload"
-    mode: 0700
-    state: directory
-- name: Plugged
-  tags:
-    - terminal
-    - nvim
-  ansible.builtin.uri:
-    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    creates: "{{lookup('env', 'HOME')}}/.local/share/nvim/site/autoload/plug.vim"
-    dest: "{{lookup('env', 'HOME')}}/.local/share/nvim/site/autoload/plug.vim"
+  ansible.builtin.git:
+    repo: 'https://github.com/wbthomason/packer.nvim'
+    dest: "{{lookup('env', 'HOME')}}/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    accept_hostkey: yes
+    depth: 1
 
-- name: "PlugInstall"
-  tags:
-    - terminal
-    - config
-    - nvim
-  ansible.builtin.shell:
-    cmd: nvim --headless +PlugInstall +qa
-    creates: "{{lookup('env', 'HOME')}}/.local/shared/nvim/plugged/"
