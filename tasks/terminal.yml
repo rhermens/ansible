@@ -15,6 +15,12 @@
     accept_hostkey: yes
     version: master
 
+- name: Install ranger
+  tags:
+    - terminal
+  become: true
+  package: name=ranger state=latest
+
 - name: Install tmux
   tags:
     - terminal
@@ -92,4 +98,5 @@
   tags: 
     - terminal
   shell: cd $HOME/chrome-shell && ./install
+
 
