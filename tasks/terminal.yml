@@ -2,7 +2,7 @@
   tags:
     - terminal
     - zsh  
-  become: yes
+  become: true
   package: name=zsh state=latest
 
 - name: Antigen
@@ -65,6 +65,12 @@
     - terminal
   become: true
   package: name=ripgrep state=latest
+
+- name: Install fd
+  tags:
+    - terminal
+  become: true
+  package: name=fd state=latest
 
 - name: Set shell
   tags:
