@@ -1,8 +1,8 @@
-- name: Install i3-gaps
+- name: Install i3
   tags:
     - i3
   become: yes
-  package: name=i3-gaps state=latest
+  package: name=i3-wm state=latest
 
 - name: Install i3 status
   tags:
@@ -10,11 +10,23 @@
   become: yes
   package: name=i3status state=latest
 
+- name: Install i3 python library
+  tags:
+    - i3
+  become: yes
+  package: name=python-i3ipc state=latest
+
 - name: Install rofi
   tags:
     - i3
   become: yes
   package: name=rofi state=latest
+
+- name: Install playerctl
+  tags:
+    - i3
+  become: yes
+  package: name=playerctl state=latest
 
 - name: Install dunst
   tags:
