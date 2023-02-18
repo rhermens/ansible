@@ -1,3 +1,20 @@
+- name: Clone st
+  tags:
+    - gui
+  ansible.builtin.git:
+    repo: 'git@github.com:rhermens/st.git'
+    dest: "{{lookup('env', 'HOME')}}/st"
+    accept_hostkey: yes
+    version: master
+
+- name: Install st
+  tags:
+    - gui
+  become: true
+  ansible.builtin.shell:
+    cmd: "cd {{lookup('env', 'HOME')}}/st; makepkg --force --clean --install"
+    creates: "/usr/bin/st"
+
 - name: Install zsh
   tags:
     - terminal
@@ -89,20 +106,5 @@
     depth: 1
     accept_hostkey: yes
     version: master
-
-- name: clone chrome-shell
-  tags:
-    - terminal
-  ansible.builtin.git:
-    repo: 'git@github.com:rhermens/chrome-shell.git'
-    dest: "{{lookup('env', 'HOME')}}/chrome-shell"
-    depth: 1
-    accept_hostkey: yes
-    version: master
-
-- name: Install chrome-shell
-  tags: 
-    - terminal
-  shell: cd $HOME/chrome-shell && ./install
 
 

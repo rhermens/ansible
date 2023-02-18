@@ -6,5 +6,4 @@
     - include: tasks/dotfiles.yml
     - include: tasks/nvim.yml
     - include: tasks/dev.yml
-    - include: tasks/gui.yml
     - include: tasks/i3.yml

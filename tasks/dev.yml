@@ -32,3 +32,12 @@
     executable: /bin/bash
     cmd: "source {{lookup('env', 'HOME')}}/.nvm/nvm.sh; nvm install 16.18.1; nvm use 16.18.1"
     creates: "{{lookup('env', 'HOME')}}/.nvm/versions/node/v16.18.1"
+
+- name: Dotnet install script
+  tags: 
+    - dev
+    - dotnet
+  ansible.builtin.get_url:
+    url: https://dot.net/v1/dotnet-install.sh
+    mode: '0666'
+    dest: "{{lookup('env', 'HOME')}}/dotnet-install.sh"
