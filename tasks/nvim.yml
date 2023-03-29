@@ -1,19 +1,4 @@
 
-- name: Ubuntu package facts
-  tags: 
-    - terminal
-    - nvim
-  set_fact:
-    pyvenv: "python3-venv"
-  when: ansible_distribution == "Ubuntu"
-- name: Manjaro package facts
-  tags: 
-    - nvim
-    - terminal
-  set_fact:
-    pyvenv: "python-virtualenv"
-  when: ansible_distribution == "Archlinux"
-
 - name: nvim repository
   tags:
     - terminal
@@ -28,13 +13,6 @@
     - nvim
   become: true
   package: name=neovim state=latest
-
-- name: Install py-venv (CHADTree dep)
-  tags:
-    - terminal
-    - nvim
-  become: true
-  package: name={{pyvenv}} state=latest
 
 - name: Get packer
   tags:
