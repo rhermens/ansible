@@ -1,7 +1,16 @@
-- name: Tokyonight GTK
+- name: Clone Tokyonight GTK
   tags:
     - gtk
-  ansible.builtin.unarchive:
-    src: https://files03.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY3MzQ4ODgyNywidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiJlZTJjZTEyOTIxMmJmYTM4YWFjMDI3ZGRiNTc3YzlmNTkwZTE2YzQ3YTVhMTdjODQxZjBkOWM1Mzk5ZGZjMDgyODU0MzZmYTkxNGI3OTEzMzMxYWRjZjZkNTQ5OGEzMzA2OTkwYjQyN2ExMGVlNWYwNTUwZmU0NzRlMDk5NmRjYyIsInQiOjE2Nzg5NDc3ODQsInN0ZnAiOiIzZGFlNDEwYzljZjVlZjlmNTk5YWFjNWRmMWVhNTA3NCIsInN0aXAiOiI4Ny4xMDEuNS42NCJ9.qgXdB9AdDlhxyKK5a8_d7YfWL4h9qtWt-PXCBAhVnk0/Tokyonight-Dark-B.zip
-    dest: "{{lookup('env', 'HOME')}}/.themes"
-    remote_src: yes
+  ansible.builtin.git:
+    repo: 'git@github.com:Fausto-Korpsvart/Tokyo-Night-GTK-Theme.git'
+    dest: "{{lookup('env', 'HOME')}}/.gtk-tokyonight"
+    recursive: yes
+    accept_hostkey: yes
+    version: master
+
+- name: Link Tokyonight GTK
+  tags:
+    - gtk
+  ansible.builtin.shell:
+    cmd: ln -s "{{lookup('env', 'HOME')}}/.gtk-tokyonight/themes/Tokyonight-Dark-B-LB" "{{lookup('env', 'HOME')}}/.themes/Tokyonight-Dark-B-LB"
+    creates: "{{lookup('env', 'HOME')}}/.themes/Tokyonight-Dark-B-LB/index.theme"
