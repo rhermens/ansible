@@ -1,4 +1,5 @@
 - name: Clone st
+  when: ansible_distribution == "Arch"
   tags:
     - gui
   ansible.builtin.git:
@@ -8,6 +9,7 @@
     version: master
 
 - name: Install st
+  when: ansible_distribution == "Arch"
   tags:
     - gui
   become: true
@@ -16,6 +18,7 @@
     creates: "/usr/bin/st"
 
 - name: Install zsh
+  when: ansible_distribution != "MacOSX"
   tags:
     - terminal
     - zsh  
@@ -35,13 +38,13 @@
 - name: Install ranger
   tags:
     - terminal
-  become: true
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
   package: name=ranger state=latest
 
 - name: Install tmux
   tags:
     - terminal
-  become: true
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
   package: name=tmux state=latest
 
 - name: Clone fzf
@@ -75,24 +78,25 @@
   become: true
   ansible.builtin.copy:
     src: "{{lookup('env', 'HOME')}}/.fzf/shell/"
-    dest: /usr/share/fzf
+    dest: /usr/local/share/fzf
 
 - name: Install ripgrep
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
   tags:
     - terminal
-  become: true
   package: name=ripgrep state=latest
 
 - name: Install fd
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
   tags:
     - terminal
-  become: true
   package: name=fd state=latest
 
 - name: Set shell
+  when: ansible_distribution != "MacOSX"
   tags:
     - terminal
-  become: true
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
   user:
     name: roy
     shell: /usr/bin/zsh
