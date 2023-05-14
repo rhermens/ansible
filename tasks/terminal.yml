@@ -1,20 +1,3 @@
-- name: Clone st
-  tags:
-    - gui
-  ansible.builtin.git:
-    repo: 'git@github.com:rhermens/st.git'
-    dest: "{{lookup('env', 'HOME')}}/st"
-    accept_hostkey: yes
-    version: master
-
-- name: Install st
-  tags:
-    - gui
-  become: true
-  ansible.builtin.shell:
-    cmd: "cd {{lookup('env', 'HOME')}}/st; makepkg --force --clean --install"
-    creates: "/usr/bin/st"
-
 - name: Install zsh
   tags:
     - terminal
@@ -31,12 +14,6 @@
     dest: "{{lookup('env', 'HOME')}}/antigen"
     accept_hostkey: yes
     version: master
-
-- name: Install ranger
-  tags:
-    - terminal
-  become: true
-  package: name=ranger state=latest
 
 - name: Install tmux
   tags:
@@ -75,7 +52,7 @@
   become: true
   ansible.builtin.copy:
     src: "{{lookup('env', 'HOME')}}/.fzf/shell/"
-    dest: /usr/share/fzf
+    dest: /usr/local/share/fzf
 
 - name: Install ripgrep
   tags:
