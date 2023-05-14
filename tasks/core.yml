@@ -1,5 +1,6 @@
 - name: Install base
   tags:
     - terminal
-  become: yes
+  when: ansible_distribution != "MacOSX"
+  become: true
   package: name=base-devel state=latest

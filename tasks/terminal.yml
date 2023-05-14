@@ -1,4 +1,5 @@
 - name: Install zsh
+  when: ansible_distribution != "MacOSX"
   tags:
     - terminal
     - zsh  
@@ -18,7 +19,7 @@
 - name: Install tmux
   tags:
     - terminal
-  become: true
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
   package: name=tmux state=latest
 
 - name: Clone fzf
@@ -55,21 +56,22 @@
     dest: /usr/local/share/fzf
 
 - name: Install ripgrep
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
   tags:
     - terminal
-  become: true
   package: name=ripgrep state=latest
 
 - name: Install fd
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
   tags:
     - terminal
-  become: true
   package: name=fd state=latest
 
 - name: Set shell
+  when: ansible_distribution != "MacOSX"
   tags:
     - terminal
-  become: true
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
   user:
     name: roy
     shell: /usr/bin/zsh
@@ -83,5 +85,4 @@
     depth: 1
     accept_hostkey: yes
     version: master
-
 

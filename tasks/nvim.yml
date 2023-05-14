@@ -1,7 +1,6 @@
 
 - name: nvim repository
   tags:
-    - terminal
     - nvim
   when: ansible_distribution == "Ubuntu"
   ansible.builtin.apt_repository:
@@ -9,9 +8,8 @@
 
 - name: Install nvim
   tags:
-    - terminal
     - nvim
-  become: true
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
   package: name=neovim state=latest
 
 - name: Get packer
