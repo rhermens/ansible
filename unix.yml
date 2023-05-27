@@ -9,3 +9,4 @@
     - include: tasks/i3.yml
     - include: tasks/gtk.yml
     - include: tasks/gui.yml
+    - include: tasks/fonts.yml

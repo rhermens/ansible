@@ -1,0 +1,14 @@
+- name: Clone Nerd fonts
+  tags:
+    - fonts
+  ansible.builtin.git:
+    repo: 'git@github.com:ryanoasis/nerd-fonts.git'
+    dest: "{{lookup('env', 'HOME')}}/nerd-fonts"
+    recursive: yes
+    accept_hostkey: yes
+    version: master
+
+- name: Install Ubuntu Mono
+  tags:
+    - fonts
+  shell: "{{lookup('env', 'HOME')}}/nerd-fonts/install.sh UbuntuMono"
