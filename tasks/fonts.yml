@@ -1,14 +1,14 @@
-- name: Clone Nerd fonts
+- name: Create fonts directory
   tags:
     - fonts
-  ansible.builtin.git:
-    repo: 'git@github.com:ryanoasis/nerd-fonts.git'
-    dest: "{{lookup('env', 'HOME')}}/nerd-fonts"
-    recursive: yes
-    accept_hostkey: yes
-    version: master
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.local/share/fonts"
+    state: directory
 
-- name: Install Ubuntu Mono
+- name: Install Source Code Pro Mono
   tags:
     - fonts
-  shell: "{{lookup('env', 'HOME')}}/nerd-fonts/install.sh UbuntuMono"
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/SourceCodePro.zip
+    dest: "{{ lookup('env', 'HOME') }}/.local/share/fonts"
