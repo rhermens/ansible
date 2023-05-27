@@ -1,0 +1,12 @@
+- name: Install pyenv
+  tags:
+    - dev
+  become: yes
+  package: name=pyenv state=latest
+
+- name: Install Python 3.9
+  tags: 
+    - dev
+  ansible.builtin.shell:
+    cmd: pyenv install 3.9.16
+    creates: "{{lookup('env', 'HOME')}}/.pyenv/versions/3.9.16"

@@ -1,0 +1,15 @@
+- name: Clone yay
+  tags:
+    - arch
+  when: ansible_distribution == "Archlinux"
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: "{{lookup('env', 'HOME')}}/yay"
+    accept_hostkey: yes
+
+- name: Install yay
+  tags:
+    - arch
+  when: ansible_distribution == "Archlinux"
+  ansible.builtin.shell:
+    cmd: "cd {{lookup('env', 'HOME')}}/yay && makepkg -si --noconfirm"

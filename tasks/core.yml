@@ -1,6 +1,13 @@
 - name: Install base
   tags:
-    - terminal
+    - core
   when: ansible_distribution != "MacOSX"
   become: true
   package: name=base-devel state=latest
+
+- name: Install make
+  tags:
+    - core
+  when: ansible_distribution != "MacOSX"
+  become: true
+  package: name=make state=latest

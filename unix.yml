@@ -1,6 +1,9 @@
 - hosts: localhost
   tasks:
+    - name: Show facts
+      debug: msg="{{ ansible_distribution }}"
     - include: tasks/core.yml
+    - include: tasks/arch.yml
     - include: tasks/ssh.yml
     - include: tasks/terminal.yml
     - include: tasks/dotfiles.yml

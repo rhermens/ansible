@@ -28,11 +28,11 @@
   become: yes
   package: name=xss-lock state=latest
 
-- name: Install rofi
+- name: Install dmenu
   tags:
     - i3
   become: yes
-  package: name=rofi state=latest
+  package: name=dmenu state=latest
 
 - name: Install playerctl
   tags:

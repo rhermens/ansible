@@ -1,20 +1,20 @@
 - name: "SSH Directory"
   tags:
-    - core
+    - ssh
   file:
     dest: "{{lookup('env', 'HOME')}}/.ssh"
     mode: 0700
     state: directory
 - name: "Copy ssh keys"
   tags:
-    - core
+    - ssh
   copy:
     src: "./.ssh/id_ed25519"
     dest: "{{lookup('env', 'HOME')}}/.ssh/id_ed25519"
     mode: 0600
 - name: "Copy pub ssh keys"
   tags:
-    - core
+    - ssh
   copy:
     src: "./.ssh/id_ed25519.pub"
     dest: "{{lookup('env', 'HOME')}}/.ssh/id_ed25519.pub"
