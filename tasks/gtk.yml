@@ -8,6 +8,13 @@
     accept_hostkey: yes
     version: master
 
+- name: Create themes directory
+  tags:
+    - gtk
+  file:
+    path: "{{lookup('env', 'HOME')}}/.themes"
+    state: directory
+
 - name: Link Tokyonight GTK
   tags:
     - gtk
