@@ -10,3 +10,10 @@
   ansible.builtin.shell:
     cmd: pyenv install 3.9.16
     creates: "{{lookup('env', 'HOME')}}/.pyenv/versions/3.9.16"
+
+- name: Poetry
+  tags:
+    - dev
+  ansible.builtin.shell:
+    cmd: curl -sSL https://install.python-poetry.org | python3 -
+    creates: "{{lookup('env', 'HOME')}}/.local/bin/poetry"
