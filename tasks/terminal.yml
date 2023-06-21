@@ -22,6 +22,12 @@
   become: "{{ ansible_distribution != \"MacOSX\" }}"
   package: name=tmux state=latest
 
+- name: Install tldr
+  tags:
+    - terminal
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
+  package: name=tldr state=latest
+
 - name: Clone fzf
   tags:
     - terminal
