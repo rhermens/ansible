@@ -10,6 +10,7 @@
     - include: tasks/nvim.yml
     - include: tasks/dev.yml
     - include: tasks/i3.yml
+    - include: tasks/gnome.yml
     - include: tasks/gtk.yml
     - include: tasks/gui.yml
     - include: tasks/fonts.yml

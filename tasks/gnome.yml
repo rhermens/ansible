@@ -1,0 +1,26 @@
+- name: Install GNOME 
+  tags:
+    - gnome
+  become: yes
+  package: name=gnome state=latest
+
+- name: Install i3-gnome
+  tags:
+    - i3
+    - gnome
+  yay: name=i3-gnome state=latest
+
+- name: Install GNOME flashback
+  tags:
+    - i3
+    - gnome
+  become: yes
+  package: name=gnome-flashback state=latest
+
+- name: Disable flashback desktop
+  tags:
+    - i3
+    - gnome
+  shell: 
+    cmd: gsettings set org.gnome.gnome-flashback desktop false
+
