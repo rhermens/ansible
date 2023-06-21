@@ -51,3 +51,15 @@
     - i3
   become: yes
   package: name=nitrogen state=latest
+
+- name: Install i3-gnome
+  tags:
+    - i3
+  become: yes
+  package: name=i3-gnome state=latest
+
+- name: Install GNOME flashback
+  tags:
+    - i3
+  become: yes
+  package: name=gnome-flashback state=latest
