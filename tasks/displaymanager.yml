@@ -1,0 +1,11 @@
+- name: Install lightdm
+  tags:
+    - displaymanager
+  become: yes
+  package: name=lightdm state=latest
+
+- name: Install gtk greeter
+  tags:
+    - displaymanager
+  become: yes
+  package: name=lightdm-gtk-greeter state=latest
