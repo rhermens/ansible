@@ -18,6 +18,38 @@
 - name: Link Tokyonight GTK
   tags:
     - gtk
+  become: yes
   ansible.builtin.shell:
-    cmd: ln -s "{{lookup('env', 'HOME')}}/.gtk-tokyonight/themes/Tokyonight-Dark-B-LB" "{{lookup('env', 'HOME')}}/.themes/Tokyonight-Dark-B-LB"
-    creates: "{{lookup('env', 'HOME')}}/.themes/Tokyonight-Dark-B-LB/index.theme"
+    cmd: ln -s "{{lookup('env', 'HOME')}}/.gtk-tokyonight/themes/Tokyonight-Dark-B" "/usr/share/themes/Tokyonight-Dark-B"
+    creates: "/usr/share/themes/Tokyonight-Dark-B/index.theme"
+
+- name: Install qt5-styleplugins
+  tags:
+    - gtk
+  yay: name=qt5-styleplugins state=latest
+
+- name: Install GTK2 engines
+  tags:
+    - gtk
+  become: yes
+  package: name=gtk-engines state=latest
+
+- name: Install Murrine Engine 
+  tags:
+    - gtk
+  become: yes
+  package: name=gtk-engine-murrine state=latest
+
+- name: Install Gnome themes extra
+  tags:
+    - gtk
+  become: yes
+  package: name=gnome-themes-extra state=latest
+
+- name: Link Configuration
+  tags:
+    - gtk
+  become: yes
+  ansible.builtin.shell:
+    cmd: ln -s "{{lookup('env', 'HOME')}}/dotfiles/gtk/settings.ini" "/etc/gtk-3.0/settings.ini"
+    creates: "/etc/gtk-3.0/settings.ini"

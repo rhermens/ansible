@@ -2,16 +2,16 @@
   tasks:
     - name: Show facts
       debug: msg="{{ ansible_distribution }}"
-    - include: tasks/core.yml
-    - include: tasks/arch.yml
-    - include: tasks/ssh.yml
-    - include: tasks/terminal.yml
-    - include: tasks/dotfiles.yml
-    - include: tasks/nvim.yml
-    - include: tasks/dev.yml
-    - include: tasks/displaymanager.yml
-    - include: tasks/i3.yml
-    # - include: tasks/gnome.yml
-    - include: tasks/gtk.yml
-    - include: tasks/gui.yml
-    - include: tasks/fonts.yml
+    - import_tasks: tasks/core.yml
+    - import_tasks: tasks/arch.yml
+    - import_tasks: tasks/ssh.yml
+    - import_tasks: tasks/terminal.yml
+    - import_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/nvim.yml
+    - import_tasks: tasks/dev.yml
+    - import_tasks: tasks/displaymanager.yml
+    - import_tasks: tasks/i3.yml
+    # - import: tasks/gnome.yml
+    - import_tasks: tasks/gtk.yml
+    - import_tasks: tasks/gui.yml
+    - import_tasks: tasks/fonts.yml

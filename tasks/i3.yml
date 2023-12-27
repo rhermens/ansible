@@ -4,6 +4,12 @@
   become: yes
   package: name=i3-wm state=latest
 
+- name: Install xcompmgr
+  tags:
+    - i3
+  become: yes
+  package: name=xcompmgr state=latest
+
 - name: Install i3 status
   tags:
     - i3
