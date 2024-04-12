@@ -20,8 +20,16 @@
     - gtk
   become: yes
   ansible.builtin.shell:
-    cmd: ln -s "{{lookup('env', 'HOME')}}/.gtk-tokyonight/themes/Tokyonight-Dark-B" "/usr/share/themes/Tokyonight-Dark-B"
-    creates: "/usr/share/themes/Tokyonight-Dark-B/index.theme"
+    cmd: ln -s "{{lookup('env', 'HOME')}}/.gtk-tokyonight/themes/Tokyonight-Dark-BL" "/usr/share/themes/Tokyonight-Dark-BL"
+    creates: "/usr/share/themes/Tokyonight-Dark-BL/index.theme"
+
+- name: Link Tokyonight GTK Icons
+  tags:
+    - gtk
+  become: yes
+  ansible.builtin.shell:
+    cmd: ln -s "{{lookup('env', 'HOME')}}/.gtk-tokyonight/icons/Tokyonight-Dark" "/usr/share/icons/Tokyonight-Dark"
+    creates: "/usr/share/icons/Tokyonight-Dark/index.theme"
 
 - name: Install qt5-styleplugins
   tags:

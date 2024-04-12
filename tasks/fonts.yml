@@ -12,3 +12,11 @@
     remote_src: true
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/SourceCodePro.zip
     dest: "{{ lookup('env', 'HOME') }}/.local/share/fonts"
+
+- name: Install Iosevka
+  tags:
+    - fonts
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Iosevka.zip
+    dest: "{{ lookup('env', 'HOME') }}/.local/share/fonts"

@@ -1,6 +1,6 @@
-- name: Install alacritty
+- name: Install kitty
   tags:
     - gui
   become: yes
-  package: name=alacritty state=latest
+  package: name=kitty state=latest
 
