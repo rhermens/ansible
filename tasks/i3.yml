@@ -40,6 +40,12 @@
   become: yes
   package: name=dmenu state=latest
 
+- name: Install j4-dmenu-desktop
+  tags:
+    - i3
+  become: yes
+  package: name=j4-dmenu-desktop state=latest
+
 - name: Install playerctl
   tags:
     - i3
