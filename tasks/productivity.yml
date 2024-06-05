@@ -1,0 +1,15 @@
+- name: "Obsidian"
+  tags:
+    - notes
+  become: yes
+  package: name=obsidian state=latest
+
+- name: Get notes
+  tags:
+    - notes
+  ansible.builtin.git:
+    repo: 'git@github.com:rhermens/notes.git'
+    dest: "{{lookup('env', 'HOME')}}/notes"
+    recursive: yes
+    accept_hostkey: yes
+    version: master

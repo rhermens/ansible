@@ -11,6 +11,7 @@
     - import_tasks: tasks/dev.yml
     - import_tasks: tasks/displaymanager.yml
     - import_tasks: tasks/i3.yml
+    - import_tasks: tasks/productivity.yml
     # - import: tasks/gnome.yml
     - import_tasks: tasks/gtk.yml
     - import_tasks: tasks/gui.yml
