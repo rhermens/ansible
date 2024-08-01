@@ -9,11 +9,10 @@
     - import_tasks: tasks/dotfiles.yml
     - import_tasks: tasks/nvim.yml
     - import_tasks: tasks/dev.yml
+    - import_tasks: tasks/displaylink.yml
     - import_tasks: tasks/displaymanager.yml
-    - import_tasks: tasks/displays.yml
     - import_tasks: tasks/i3.yml
     - import_tasks: tasks/productivity.yml
-    # - import: tasks/gnome.yml
     - import_tasks: tasks/gtk.yml
-    - import_tasks: tasks/gui.yml
     - import_tasks: tasks/fonts.yml
+    - import_tasks: tasks/x/displays.yml

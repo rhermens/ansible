@@ -1,21 +1,13 @@
-- name: Install evdi
-  tags:
-    - display
-  yay: name=evdi state=latest
-
-- name: Install displaylink
-  tags:
-    - display
-  yay: name=displaylink state=latest
-
 - name: Install arandr
   tags:
     - display
+    - x
   become: yes
   package: name=arandr state=latest
 
 - name: Install autorandr
   tags:
     - display
+    - x
   become: yes
   package: name=autorandr state=latest

@@ -92,3 +92,10 @@
     accept_hostkey: yes
     version: master
 
+- name: Install kitty
+  tags:
+    - gui
+    - terminal
+  become: yes
+  package: name=kitty state=latest
+

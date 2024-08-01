@@ -1,0 +1,9 @@
+- name: Install evdi
+  tags:
+    - display
+  yay: name=evdi state=latest
+
+- name: Install displaylink
+  tags:
+    - display
+  yay: name=displaylink state=latest

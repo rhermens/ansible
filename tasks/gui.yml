@@ -1,6 +1,0 @@
-- name: Install kitty
-  tags:
-    - gui
-  become: yes
-  package: name=kitty state=latest
-
