@@ -13,3 +13,19 @@
     recursive: yes
     accept_hostkey: yes
     version: master
+
+- name: Clone timer
+  tags:
+    - tracking
+  ansible.builtin.git:
+    repo: 'git@github.com:rhermens/timer.git'
+    dest: "{{lookup('env', 'HOME')}}/Code/timer"
+    recursive: yes
+    accept_hostkey: yes
+    version: master
+
+- name: Install timer
+  tags:
+    - tracking
+  ansible.builtin.shell:
+    cmd: "cd {{lookup('env', 'HOME')}}/Code/timer && go install"
