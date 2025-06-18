@@ -24,38 +24,11 @@
   become: "{{ ansible_distribution != \"MacOSX\" }}"
   package: name=tldr state=latest
 
-- name: Clone fzf
-  tags:
-    - terminal
-  ansible.builtin.git:
-    repo: 'git@github.com:junegunn/fzf.git'
-    dest: "{{lookup('env', 'HOME')}}/.fzf"
-    accept_hostkey: yes
-    version: master
-
-- name: Setup fzf
-  tags:
-    - terminal
-  shell: 
-    cmd: cd $HOME/.fzf && ./install --bin
-    creates: "{{lookup('env', 'HOME')}}/.fzf/bin/fzf"
-
 - name: Install fzf
   tags:
     - terminal
-  become: true
-  ansible.builtin.copy:
-    src: "{{lookup('env', 'HOME')}}/.fzf/bin/"
-    dest: /usr/local/bin
-    mode: 0755
-
-- name: Fzf zsh binding
-  tags:
-    - terminal
-  become: true
-  ansible.builtin.copy:
-    src: "{{lookup('env', 'HOME')}}/.fzf/shell/"
-    dest: /usr/local/share/fzf
+  become: "{{ ansible_distribution != \"MacOSX\" }}"
+  package: name=fzf state=latest
 
 - name: Install ripgrep
   become: "{{ ansible_distribution != \"MacOSX\" }}"
