@@ -1,0 +1,13 @@
+- name: Latex render enc
+  tags:
+    - sci
+  become: yes
+  package: name=texlive-binextra state=latest
+
+
+- name: Zatuhura viewer
+  tags:
+    - sci
+  become: yes
+  package: name=zathura state=latest
+

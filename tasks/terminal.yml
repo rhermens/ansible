@@ -10,11 +10,7 @@
   tags:
     - terminal
     - zsh  
-  ansible.builtin.git:
-    repo: 'https://github.com/zsh-users/antigen.git'
-    dest: "{{lookup('env', 'HOME')}}/antigen"
-    accept_hostkey: yes
-    version: master
+  yay: name=antigen state=latest
 
 - name: Install tmux
   tags:

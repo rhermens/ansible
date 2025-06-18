@@ -15,4 +15,5 @@
     - import_tasks: tasks/productivity.yml
     - import_tasks: tasks/gtk.yml
     - import_tasks: tasks/fonts.yml
+    - import_tasks: tasks/sci.yml
     - import_tasks: tasks/x/displays.yml

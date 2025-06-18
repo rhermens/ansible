@@ -14,4 +14,7 @@
   tags:
     - dev
   include_tasks: dev/dotnet.yml
-
+- name: Haskell
+  tags:
+    - dev
+  include_tasks: dev/haskell.yml

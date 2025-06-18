@@ -1,0 +1,9 @@
+- name: clone xmonad
+  tags:
+    - xmonad
+  ansible.builtin.git:
+    repo: 'git@github.com:rhermens/xmonad.git'
+    dest: "{{lookup('env', 'HOME')}}/Code/xmonad-exe"
+    accept_hostkey: yes
+    version: master
+
